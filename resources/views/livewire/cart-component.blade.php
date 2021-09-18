@@ -4,31 +4,46 @@
 
         <div class="wrap-breadcrumb">
             <ul>
-                <li class="item-link"><a href="#" class="link">home</a></li>
-                <li class="item-link"><span>login</span></li>
+                <li class="item-link"><a href="/" class="link">home</a></li>
+                <li class="item-link"><span>Cart</span></li>
             </ul>
         </div>
         <div class=" main-content-area">
 
             <div class="wrap-iten-in-cart">
-                <h3 class="box-title">Products Name</h3>
+
+                @if(Session::has('success_message'))
+                <div class="alert alert-success">
+                    <strong>Success</strong> {{Session::get('success_message')}}
+                </div>
+                @endif
+
+                @if (Cart::count() > 0)
+                    
+               
+                <h3 class="box-title">{{$item->name}}</h3>
                 <ul class="products-cart">
+
+                    @foreach (Cart::content() as $item)
+                        
+                  
+
                     <li class="pr-cart-item">
                         <div class="product-image">
-                            <figure><img src="{{ asset('assets/images/products/digital_18.jpg')}}" alt=""></figure>
+                            <figure><img src="{{asset('assets/images/products')}}/{{$item->model->image}}" alt="{{$item->model->name}}"></figure>
                         </div>
                         <div class="product-name">
-                            <a class="link-to-product" href="#">Radiant-360 R6 Wireless Omnidirectional Speaker [White]</a>
+                            <a class="link-to-product" href="{{route('product.details',['slug'=>$item->model->slug])}}">{{$item->model->name}}</a>
                         </div>
-                        <div class="price-field produtc-price"><p class="price">$256.00</p></div>
+                        <div class="price-field produtc-price"><p class="price">DZ {{$item->model->regular_price}}</p></div>
                         <div class="quantity">
                             <div class="quantity-input">
-                                <input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*" >									
+                                <input type="text" name="product-quatity" value="{{$item->model->qty}}" data-max="120" pattern="[0-9]*" >									
                                 <a class="btn btn-increase" href="#"></a>
                                 <a class="btn btn-reduce" href="#"></a>
                             </div>
                         </div>
-                        <div class="price-field sub-total"><p class="price">$256.00</p></div>
+                        <div class="price-field sub-total"><p class="price">DZ {{$item->subtotal}}</p></div>
                         <div class="delete">
                             <a href="#" class="btn btn-delete" title="">
                                 <span>Delete from your cart</span>
@@ -36,39 +51,36 @@
                             </a>
                         </div>
                     </li>
-                    <li class="pr-cart-item">
-                        <div class="product-image">
-                            <figure><img src="{{ asset('assets/images/products/digital_20.jpg')}}" alt=""></figure>
-                        </div>
-                        <div class="product-name">
-                            <a class="link-to-product" href="#">Radiant-360 R6 Wireless Omnidirectional Speaker [White]</a>
-                        </div>
-                        <div class="price-field produtc-price"><p class="price">$256.00</p></div>
-                        <div class="quantity">
-                            <div class="quantity-input">
-                                <input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*">									
-                                <a class="btn btn-increase" href="#"></a>
-                                <a class="btn btn-reduce" href="#"></a>
-                            </div>
-                        </div>
-                        <div class="price-field sub-total"><p class="price">$256.00</p></div>
-                        <div class="delete">
-                            <a href="#" class="btn btn-delete" title="">
-                                <span>Delete from your cart</span>
-                                <i class="fa fa-times-circle" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </li>												
+
+                    @endforeach								
                 </ul>
+                    
+                @else
+
+                <p> No item in cart</p>
+                    
+                @endif
+
             </div>
 
             <div class="summary">
+            
+
                 <div class="order-summary">
                     <h4 class="title-box">Order Summary</h4>
-                    <p class="summary-info"><span class="title">Subtotal</span><b class="index">$512.00</b></p>
-                    <p class="summary-info"><span class="title">Shipping</span><b class="index">Free Shipping</b></p>
-                    <p class="summary-info total-info "><span class="title">Total</span><b class="index">$512.00</b></p>
-                </div>
+                    <p class="summary-info"><span class="title">Subtotal</span><b class="index">${{Cart::instance('cart')->subtotal()}}</b></p>
+                    @if(Session::has('coupon'))
+                        <p class="summary-info"><span class="title">Discount ({{Session::get('coupon')['code']}}) <a href="#" wire:click.prevent= "removeCoupon"><i class="fa fa-times text-danger"></i></a></span></span><b class="index"> -${{number_format($discount,2)}}</b></p>
+                        <p class="summary-info"><span class="title">Subtotal with Discount</span></span><b class="index">${{number_format($subtotalAfterDiscount,2)}}</b></p>
+                        <p class="summary-info"><span class="title">Tax ({{config('cart.tax')}}%)</span></span><b class="index">${{number_format($taxAfterDiscount,2)}}</b></p>                        
+                        <p class="summary-info total-info "><span class="title">Total</span><b class="index">${{number_format($totalAfterDiscount,2)}}</b></p>
+                    @else
+                        <p class="summary-info"><span class="title">Tax</span><b class="index">${{Cart::instance('cart')->tax()}}</b></p>
+                        <p class="summary-info"><span class="title">Shipping</span><b class="index">Free Shipping</b></p>
+                        <p class="summary-info total-info "><span class="title">Total</span><b class="index">${{Cart::instance('cart')->total()}}</b></p>
+                    @endif                   
+                </div> 
+
                 <div class="checkout-info">
                     <label class="checkbox-field">
                         <input class="frm-input " name="have-code" id="have-code" value="" type="checkbox"><span>I have promo code</span>
