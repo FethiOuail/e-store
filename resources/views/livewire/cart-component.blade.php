@@ -18,13 +18,15 @@
                 </div>
                 @endif
 
-                @if (Cart::count() > 0)
-                    
-               
-                <h3 class="box-title">{{$item->name}}</h3>
+             
+                @if(Cart::instance('cart')->count() > 0)
+                @foreach (Cart::content() as $item)
+
+
+                <h3 class="box-title">{{$item->model->name}}</h3>
                 <ul class="products-cart">
 
-                    @foreach (Cart::content() as $item)
+                  
                         
                   
 
@@ -33,12 +35,12 @@
                             <figure><img src="{{asset('assets/images/products')}}/{{$item->model->image}}" alt="{{$item->model->name}}"></figure>
                         </div>
                         <div class="product-name">
-                            <a class="link-to-product" href="{{route('product.details',['slug'=>$item->model->slug])}}">{{$item->model->name}}</a>
+                            <a class="link-to-product" href="{{route('product.details',['slug'=>1])}}">{{$item->model->name}}</a>
                         </div>
                         <div class="price-field produtc-price"><p class="price">DZ {{$item->model->regular_price}}</p></div>
                         <div class="quantity">
                             <div class="quantity-input">
-                                <input type="text" name="product-quatity" value="{{$item->model->qty}}" data-max="120" pattern="[0-9]*" >									
+                                <input type="text" name="product-quatity" value="{{$item->qty}}" data-max="120" pattern="[0-9]*" >									
                                 <a class="btn btn-increase" href="#"></a>
                                 <a class="btn btn-reduce" href="#"></a>
                             </div>
