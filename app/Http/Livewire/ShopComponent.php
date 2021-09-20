@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Category;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -42,6 +43,8 @@ class ShopComponent extends Component
     public function render()
     {
 
+        $categories  = Category::all();
+
         if($this->sorting=='date')
         {
             $products = Product::orderBy('created_at','DESC')->paginate($this->pagesize);
@@ -57,7 +60,7 @@ class ShopComponent extends Component
         else{
             $products = Product::paginate($this->pagesize);
         }
-        return view('livewire.shop-component',['products'=> $products])->layout("layouts.base");
+        return view('livewire.shop-component',['products'=> $products, 'categories' =>$categories])->layout("layouts.base");
 
         //  $products = Product::paginate(12);
         // return view('livewire.shop-component',['products'=> $products])->layout("layouts.base");
