@@ -22,12 +22,12 @@ class AdminEditCategoryComponent extends Component
         $category = Category::where('slug',$category_slug)->first();
         $this->category_id = $category->id;
         $this->name = $category->name;
-        $this->slug = $category->slug;
+        $this->slug = $category->slug ;
     }
 
     public function generateslug()
     {
-        $this->slug = Str::slug($this->name);
+        $this->slug = Str::slug($this->name)."--";
     }
 
     public function updated($fields)
