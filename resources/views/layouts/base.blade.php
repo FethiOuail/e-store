@@ -17,6 +17,9 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/chosen.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/color-01.css')}}">
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 	@livewireStyles
 </head>
 <body class="home-page home-01 ">
@@ -38,7 +41,7 @@
 						<div class="topbar-menu left-menu">
 							<ul>
 								<li class="menu-item" >
-									<a title="Hotline: (+123) 456 789" href="#" ><span class="icon label-before fa fa-mobile"></span>Hotline: (+123) 456 789</a>
+									<a title="Hotline: (+123) 456 789" href="#" ><span class="icon label-before fa fa-mobile"></span>Hotline: (+213) 0656 28 20 58</a>
 								</li>
 							</ul>
 						</div>
@@ -47,10 +50,8 @@
 								<li class="menu-item lang-menu menu-item-has-children parent">
 									<a title="English" href="#"><span class="img label-before"><img src="{{asset('assets/images/lang-en.png')}}" alt="lang-en"></span>English<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 									<ul class="submenu lang" >
-										<li class="menu-item" ><a title="hungary" href="#"><span class="img label-before"><img src="{{asset('assets/images/lang-hun.png')}}" alt="lang-hun"></span>Hungary</a></li>
-										<li class="menu-item" ><a title="german" href="#"><span class="img label-before"><img src="{{asset('assets/images/lang-ger.png')}}" alt="lang-ger" ></span>German</a></li>
+
 										<li class="menu-item" ><a title="french" href="#"><span class="img label-before"><img src="{{asset('assets/images/lang-fra.png')}}" alt="lang-fre"></span>French</a></li>
-										<li class="menu-item" ><a title="canada" href="#"><span class="img label-before"><img src="{{asset('assets/images/lang-can.png')}}" alt="lang-can"></span>Canada</a></li>
 									</ul>
 								</li>
 
@@ -76,7 +77,17 @@
                                                     </li>
 
 
-													<form id="logout-form" method="POST" action=" {{ route('logout') }} ">
+
+                                                    <li class="menu-item">
+                                                        <a title="Manage Home Slider" href="{{route('admin.homesliders')}}">Manage Home Slider</a>
+                                                    </li>
+
+                                                    <li class="menu-item">
+                                                        <a title="Manage Home Categories" href="{{route('admin.homecategories')}}">Manage Home Categories</a>
+                                                    </li>
+
+
+                                                    <form id="logout-form" method="POST" action=" {{ route('logout') }} ">
 														@csrf
                                                         <li class="menu-item">
                                                             <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Logout</a>
@@ -225,7 +236,7 @@
 							<i class="fa fa-truck" aria-hidden="true"></i>
 							<div class="wrap-left-info">
 								<h4 class="fc-name">Free Shipping</h4>
-								<p class="fc-desc">Free On Oder Over $99</p>
+								<p class="fc-desc">Free On Oder Over 200 DZ</p>
 							</div>
 
 						</li>
@@ -272,11 +283,11 @@
 										<ul>
 											<li>
 												<i class="fa fa-map-marker" aria-hidden="true"></i>
-												<p class="contact-txt">45 Grand Central Terminal New York,NY 1017 United State USA</p>
+												<p class="contact-txt">Rue Sahraoui Said, Batna , ALgeria</p>
 											</li>
 											<li>
 												<i class="fa fa-phone" aria-hidden="true"></i>
-												<p class="contact-txt">(+123) 456 789 - (+123) 666 888</p>
+												<p class="contact-txt">(+213) 0656282058</p>
 											</li>
 											<li>
 												<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -295,7 +306,7 @@
 								<div class="item-content">
 									<div class="wrap-hotline-footer">
 										<span class="desc">Call Us toll Free</span>
-										<b class="phone-number">(+123) 456 789 - (+123) 666 888</b>
+										<b class="phone-number">(+213) 0656282058</b>
 									</div>
 								</div>
 							</div>
@@ -370,9 +381,7 @@
 										<ul>
 											<li><a href="#" class="link-to-item" title="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 											<li><a href="#" class="link-to-item" title="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-											<li><a href="#" class="link-to-item" title="pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
 											<li><a href="#" class="link-to-item" title="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-											<li><a href="#" class="link-to-item" title="vimeo"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
 										</ul>
 									</div>
 								</div>
@@ -451,7 +460,7 @@
 			<div class="coppy-right-box">
 				<div class="container">
 					<div class="coppy-right-item item-left">
-						<p class="coppy-right-text">Copyright © 2020 Surfside Media. All rights reserved</p>
+						<p class="coppy-right-text">Copyright © 2021 Anwar Kamel Ouail. All rights reserved</p>
 					</div>
 					<div class="coppy-right-item item-right">
 						<div class="wrap-nav horizontal-nav">
@@ -478,6 +487,11 @@
 	<script src="{{ asset('assets/js/jquery.countdown.min.js')}}"></script>
 	<script src="{{ asset('assets/js/jquery.sticky.js')}}"></script>
 	<script src="{{ asset('assets/js/functions.js')}}"></script>
-	@livewireScripts
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    @livewireScripts
+
+
+    @stack('scripts')
 </body>
 </html>

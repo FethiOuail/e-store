@@ -1,5 +1,13 @@
 <main id="main" class="main-site">
 
+    <style> .salep {
+            font-family: 'Lato', san-serif;
+            font-weight: 300;
+            font-size: 13px !important;
+            color: #aaaaaa !important;
+            text-decoration: line-through;
+            padding-left:10px;  } </style>
+
     <div class="container">
 
         <div class="wrap-breadcrumb">
@@ -20,7 +28,7 @@
                                 <img src="{{asset('assets/images/products')}}/{{$product->image}}" alt="{{$product->name}} " />
                             </li>
 
-                     
+
                           </ul>
                         </div>
                     </div>
@@ -42,7 +50,18 @@
                         <div class="wrap-social">
                             <a class="link-socail" href="#"><img src="{{asset('assets/images/social-list.png')}}" alt=""></a>
                         </div>
+
+                        @if($product->sale_price > 0)
+
+                        <div class="wrap-price">
+                            <span class="product-price">DZ {{$product->sale_price}}</span>
+                            <del><span class="product-price salep">DZ {{$product->regular_price}}</span></del>
+                        </div>
+
+                        @else
                         <div class="wrap-price"><span class="product-price">DZ {{$product->regular_price}}</span></div>
+                        @endif
+
                         <div class="stock-info in-stock">
                             <p class="availability">Availability: <b>  {{$product->stock_status}}</b></p>
                         </div>
@@ -50,7 +69,7 @@
                             <span>Quantity:</span>
                             <div class="quantity-input">
                                 <input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*" >
-                                
+
                                 <a class="btn btn-reduce" href="#"></a>
                                 <a class="btn btn-increase" href="#"></a>
                             </div>
@@ -89,21 +108,21 @@
                                 </table>
                             </div>
                             <div class="tab-content-item " id="review">
-                                
+
                                 <div class="wrap-review-form">
-                                    
+
                                     <div id="comments">
                                         <h2 class="woocommerce-Reviews-title">01 review for <span>Radiant-360 R6 Chainsaw Omnidirectional [Orage]</span></h2>
                                         <ol class="commentlist">
                                             <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-20">
-                                                <div id="comment-20" class="comment_container"> 
+                                                <div id="comment-20" class="comment_container">
                                                     <img alt="" src="{{asset('assets/images/author-avata.jpg')}}" height="80" width="80">
                                                     <div class="comment-text">
                                                         <div class="star-rating">
                                                             <span class="width-80-percent">Rated <strong class="rating">5</strong> out of 5</span>
                                                         </div>
-                                                        <p class="meta"> 
-                                                            <strong class="woocommerce-review__author">admin</strong> 
+                                                        <p class="meta">
+                                                            <strong class="woocommerce-review__author">admin</strong>
                                                             <span class="woocommerce-review__dash">–</span>
                                                             <time class="woocommerce-review__published-date" datetime="2008-02-14 20:00" >Tue, Aug 15,  2017</time>
                                                         </p>
@@ -118,7 +137,7 @@
 
                                     <div id="review_form_wrapper">
                                         <div id="review_form">
-                                            <div id="respond" class="comment-respond"> 
+                                            <div id="respond" class="comment-respond">
 
                                                 <form action="#" method="post" id="commentform" class="comment-form" novalidate="">
                                                     <p class="comment-notes">
@@ -127,7 +146,7 @@
                                                     <div class="comment-form-rating">
                                                         <span>Your rating</span>
                                                         <p class="stars">
-                                                            
+
                                                             <label for="rated-1"></label>
                                                             <input type="radio" id="rated-1" name="rating" value="1">
                                                             <label for="rated-2"></label>
@@ -141,11 +160,11 @@
                                                         </p>
                                                     </div>
                                                     <p class="comment-form-author">
-                                                        <label for="author">Name <span class="required">*</span></label> 
+                                                        <label for="author">Name <span class="required">*</span></label>
                                                         <input id="author" name="author" type="text" value="">
                                                     </p>
                                                     <p class="comment-form-email">
-                                                        <label for="email">Email <span class="required">*</span></label> 
+                                                        <label for="email">Email <span class="required">*</span></label>
                                                         <input id="email" name="email" type="email" value="" >
                                                     </p>
                                                     <p class="comment-form-comment">
@@ -216,8 +235,8 @@
                         <ul class="products">
 
                             @foreach ($pop_products as $p_product)
-                                
-                         
+
+
 
                             <li class="product-item">
                                 <div class="product product-widget-style">
@@ -233,7 +252,7 @@
                                 </div>
                             </li>
                             @endforeach
-                     
+
                         </ul>
                     </div>
                 </div>
@@ -271,9 +290,9 @@
                         </div>
                     </div><!--End wrap-products-->
                 </div>
-            
+
             </div>
-          
+
 
         </div><!--end row-->
 
