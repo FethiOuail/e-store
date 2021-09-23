@@ -60,6 +60,17 @@ class AdminAddProductComponent extends Component
     }
 
 
+    function saveImage($photo, $folde)
+    {
+        // save photo in folder
+        $file_extension = $photo->extension();
+        $file_name = time() . '.' . $file_extension;
+        $path = $folde;
+        $photo->move($path, $file_name);
+
+        return $file_name;
+    }
+
     public function addProduct() {
 
         $this->validate([
@@ -90,8 +101,14 @@ class AdminAddProductComponent extends Component
         $product->quantity = $this->quantity;
 
 
-        $imageName = Carbon::now()->timestamp. '.'.$this->image->extension();
-        $this->image->storeAs('products', $imageName);
+        $imageName = time(). '.'.$this->image->extension();
+
+        $file_name = $this->saveImage($this->image, 'images/offers');
+        //$this->image->storeAs('products', $imageName);
+
+
+
+
         $product->image = $imageName;
 
         if($this->images)
