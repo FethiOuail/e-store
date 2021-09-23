@@ -20,7 +20,7 @@
 
 
                 @if(Cart::instance('cart')->count() > 0)
-                @foreach (Cart::content() as $item)
+                @foreach (Cart::instance('cart')->content() as $item)
 
 
                 <h3 class="box-title">{{$item->model->name}}</h3>

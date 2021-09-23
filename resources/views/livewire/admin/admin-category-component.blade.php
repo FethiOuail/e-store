@@ -44,10 +44,10 @@
                                     <td>{{$category->name}}</td>
                                     <td>{{$category->slug}}</td>
                                     <td>
-                                        <a href="" wire:click.prevent="deleteCategory({{$category->id}})" class="btn btn-danger pull-right"  style="margin-left:10px;"><i class="fa fa-times  "></i></a>
 
                                         <a href="{{ route('admin.editcategory', $category->slug ) }}" class="btn btn-success pull-right"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
 
+                                        <a href="#" onclick="confirm('Are you sure, You want to delete this category?') || event.stopImmediatePropagation()" wire:click.prevent="deleteCategory({{$category->id}})" style="margin-left:10px; "><i class="fa fa-times fa-2x text-danger"></i></a>
 
                                     </td>
                                 </tr>
