@@ -86,7 +86,7 @@
                     <h4 class="title-box f-title">Shipping method</h4>
                     <p class="summary-info"><span class="title">Flat Rate</span></p>
                     <p class="summary-info"><span class="title">Fixed $50.00</span></p>
-            
+
                 </div>
             </div>
 
