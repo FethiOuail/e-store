@@ -96,9 +96,11 @@
 							<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
 								<div class="product product-style-3 equal-elem ">
 									<div class="product-thumnail">
+
 										<a href="{{route('product.details',['slug'=>$product->slug])}}" title="{{ $product->name }}">
 											<figure><img src="{{asset('assets/images/products/')}}/{{ $product->image }}" alt="{{ $product->name }}"></figure>
 										</a>
+
 									</div>
 									<div class="product-info">
 										<a href="{{route('product.details',['slug'=>$product->id])}}" class="product-name"><span> {{ $product->name }} </span></a>
@@ -106,12 +108,13 @@
 										<a href="#" class="btn add-to-cart" wire:click.prevent="store('{{$product->id}}','{{$product->name}}', '{{$product->regular_price}}','{{$product->image}}', '{{$product->slug}}')">Add To Cart</a>
 
                                         <div class="product-wish">
+
                                             @if($witems->contains($product->id))
-                                            <a href="#" wire:click.prevent="addToWishlist({{$product->id}},'{{$product->name}}',{{$product->regular_price}})"><i class="fa fa-heart fill-heart"></i></a>
+                                                <a href="#" wire:click.prevent="removeFromWishlist({{$product->id}})"><i class="fa fa-heart fill-heart"></i></a>
                                             @else
                                                 <a href="#" wire:click.prevent="addToWishlist({{$product->id}},'{{$product->name}}',{{$product->regular_price}})"><i class="fa fa-heart"></i></a>
-
                                             @endif
+
 
                                         </div>
 									</div>
@@ -130,13 +133,13 @@
 
 						{{$products->links()}}
 
-						<ul class="page-numbers">
+			{{--			<ul class="page-numbers">
 							<li><span class="page-number-item current" >1</span></li>
 							<li><a class="page-number-item" href="#" >2</a></li>
 							<li><a class="page-number-item" href="#" >3</a></li>
 							<li><a class="page-number-item next-link" href="#" >Next</a></li>
 						</ul>
-						<p class="result-count">Showing 1-8 of 12 result</p>
+						<p class="result-count">Showing 1-8 of 12 result</p>--}}
 					</div>
 				</div><!--end main products area-->
 

@@ -11,7 +11,20 @@
 
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/animate.css')}}"/>
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/font-awesome.min.css')}}"/>
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css')}}"/>
+
+{{--
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/rtlbootstrap.min.css')}}"/>
+--}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css')}}"/>
+
+
+{{--
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/rlbootstrap.min.css')}}"/>
+--}}
+
+
+
+
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.carousel.min.css')}}"/>
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/flexslider.css')}}"/>
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/chosen.min.css')}}"/>
@@ -66,6 +79,11 @@
                                         <ul class="submenu lang" >
 
                                             <li class="menu-item" ><a title="french" href="#"><span class="img label-before"><img src="{{asset('assets/images/lang-fra.png')}}" alt="lang-fre"></span>French</a></li>
+
+                                            <li class="menu-item" ><a title="العربية" href="#"><span class="img label-before"><img src="{{asset('assets/images/lang-ar.png')}}" alt="lang-ar"></span>Arabic</a></li>
+
+
+
                                         </ul>
                                     </li>
 
@@ -102,6 +120,10 @@
 
                                                         <li>
                                                             <a href="{{route('admin.onsale')}}">Manage Sale</a>
+                                                        </li>
+
+                                                        <li class="menu-item">
+                                                            <a title="All Coupon" href="{{route('admin.coupons')}}">All Coupon</a>
                                                         </li>
 
 
@@ -163,32 +185,13 @@
                             @livewire('header-search-component')
 
                             <div class="wrap-icon right-section">
-                                <div class="wrap-icon-section wishlist">
-                                    <a href="#" class="link-direction">
-                                        <i class="fa fa-heart" aria-hidden="true"></i>
-                                        <div class="left-info">
-                                            @if(Cart::instance("wishlist")->count() > 0)
-                                            <span class="index"> {{Cart::instance("wishlist")->count() }} item</span>
-                                            @endif
-                                            <span class="title">Wishlist</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="wrap-icon-section minicart">
-                                    <a href="{{ route('product.cart') }}" class="link-direction">
-                                        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                                        <div class="left-info">
-                                            @if ( Cart::instance('cart')->count() > 0)
 
-                                            <span class="index"> {{  Cart::instance('cart')->count() }} items</span>
 
-                                            @endif
+                                @livewire('wishlist-count-component')
 
-                                            <span class="title">CART</span>
+                                @livewire('cart-count-component')
 
-                                        </div>
-                                    </a>
-                                </div>
+
                                 <div class="wrap-icon-section show-up-after-1024">
                                     <a href="#" class="mobile-navigation">
                                         <span></span>
@@ -202,7 +205,7 @@
                     </div>
 
                     <div class="nav-section header-sticky">
-                        <div class="header-nav-section">
+                    {{--    <div class="header-nav-section">
                             <div class="container">
                                 <ul class="nav menu-nav clone-main-menu" id="mercado_haead_menu" data-menuname="Sale Info" >
                                     <li class="menu-item"><a href="#" class="link-term">Weekly Featured</a><span class="nav-label hot-label">hot</span></li>
@@ -212,7 +215,7 @@
                                     <li class="menu-item"><a href="#" class="link-term">Top rated items</a><span class="nav-label hot-label">hot</span></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div>--}}
 
                         <div class="primary-nav-section">
                             <div class="container">
@@ -425,7 +428,7 @@
                         </div>
                     </div>
 
-                    <div class="wrap-back-link">
+                {{--    <div class="wrap-back-link">
                         <div class="container">
                             <div class="back-link-box">
                                 <h3 class="backlink-title">Quick Links</h3>
@@ -473,10 +476,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
 
                 </div>
 
+
+                <br>
                 <div class="coppy-right-box">
                     <div class="container">
                         <div class="coppy-right-item item-left">
@@ -526,6 +531,7 @@
 
 
   <script  src="{{ asset('assets/js/nouislider.min.js')}}"  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
   @livewireScripts
 
