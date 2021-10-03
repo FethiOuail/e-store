@@ -54,9 +54,9 @@
                 <p class="text-muted"> &copy Ouail Anwar Kamel  </p>
             </div>
             <div class="col-md-8 text-md-center">
-                <span  class="px-2">{{ $setting->email }}</span>
+           {{--     <span  class="px-2">{{ $setting->email }}</span>
                 <span  class="px-2">{{ $setting->phone }} || {{ $setting->phone2 }} </span>
-                <span  class="px-2"> {{ $setting->address }} </span>
+                <span  class="px-2"> {{ $setting->address }} </span>--}}
             </div>
             <div class="col-md-2 text-md-right text-muted">
                 <i class="fab fa-lg fa-cc-visa"></i>
