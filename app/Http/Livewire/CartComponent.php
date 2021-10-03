@@ -120,6 +120,7 @@ class CartComponent extends Component
         $product = Cart::instance('cart')->get($rowId);
         $qty = $product->qty - 1;
         Cart::instance('cart')->update($rowId,$qty);
+        $this->emitTo('cart-count-component', 'refreshComponent');
     }
 
 

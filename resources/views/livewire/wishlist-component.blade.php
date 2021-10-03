@@ -1,61 +1,58 @@
+ <main class="">
 
-<main id="main" class="main-site left-sidebar">
-    <div class="container">
-        <div class="wrap-breadcrumb">
-            <ul>
-                <li class="item-link"><a href="/" class="link">home</a></li>
-                <li class="item-link"><span>Wishlist</span></li>
-            </ul>
-        </div>
+        <section class="section-pagetop bg " style="padding: 10px">
+            <div class="container">
+                <h2 class="title-page">{{trans('message.Wishlist')}} </h2>
+                <nav>
+                    <ol class="breadcrumb text-white">
+                        <li class="breadcrumb-item"><a href="/home"> {{trans('message.home')}} </a></li>
 
-        <style>
-            .product-wish{
-                position: absolute;
-                top:10%;
-                left:0;
-                z-index:99;
-                right:30px;
-                text-align:right;
-                padding-top: 0;
-            }
-            .product-wish .fa{
-                color:#cbcbcb;
-                font-size:32px;
-            }
-            .product-wish .fa:hover{
-                color:#ff7007;
-            }
-            .fill-heart{
-                color:#ff7007 !important;
-            }
-        </style>
+                        <li class="breadcrumb-item active" aria-current="page">{{trans('message.Wishlist')}}</li>
+                    </ol>
+                </nav>
+            </div> <!-- container //  -->
+        </section>
 
-        <div class="row">
+        <div class="container padding-top" >
             @if(Cart::instance('wishlist')->content()->count() > 0)
-                <ul class="product-list grid-products equal-container">
-                    @foreach (Cart::instance('wishlist')->content() as $item)
-                        <li class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ">
-                            <div class="product product-style-3 equal-elem ">
-                                <div class="product-thumnail">
-                                    <a href="{{route('product.details',['slug'=>$item->model->slug])}}" title="{{$item->model->name}}">
-                                        <figure><img src="{{ asset('assets/images/products') }}/{{$item->model->image}}" alt="{{$item->model->name}}"></figure>
-                                    </a>
-                                </div>
-                                <div class="product-info">
-                                    <a href="{{route('product.details',['slug'=>$item->model->slug])}}" class="product-name"><span>{{$item->model->name}}</span></a>
-                                    <div class="wrap-price"><span class="product-price">${{$item->model->regular_price}}</span></div>
-                                    <a href="#" class="btn add-to-cart" wire:click.prevent="moveProductFromWishlistToCart('{{$item->rowId}}')">Move To Cart</a>
-                                    <div class="product-wish">
-                                        <a href="#" wire:click.prevent="removeFromWishlist({{$item->model->id}})"><i class="fa fa-heart fill-heart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
+        <div class="row">
+            @foreach (Cart::instance('wishlist')->content() as $item)
+            <div class="col-md-4">
+                <figure class="card card-product-grid">
+                    <div class="img-wrap">
+                        <span class="badge badge-danger"> NEW </span>
+                        <img src="{{ asset('assets/images/products') }}/{{$item->model->image}}" alt="{{$item->model->name}}">
+                        <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
+                    </div> <!-- img-wrap.// -->
+                    <figcaption class="info-wrap">
+                        <div class="fix-height">
+                            <a href="{{route('product.details',['slug'=>$item->model->slug])}}" title="{{$item->model->regular_price}}" class="title">{{$item->model->name}}</a>
+                            <div class="price-wrap mt-2">
+
+                                <span class="price"> {{$item->model->regular_price}} </span>
+                                <del class="price-old" {{$item->model->sale_price}}</del>
+                            </div> <!-- price-wrap.// -->
+                        </div>
+
+
+                        <a href="#"  wire:click.prevent="moveProductFromWishlistToCart('{{$item->rowId}}')"  class="btn btn-block btn-primary">{{trans('details.MoveToCart')}} <i class="fas fa-shopping-cart"></i> </a>
+                        <a href="#" wire:click.prevent="removeFromWishlist({{$item->model->id}})"  class="btn  btn-outline-danger btn-block">{{trans('details.RemoveWishlist')}}  <i class="fas fa-heart text-danger"></i></a>
+                    </figcaption>
+                </figure>
+            </div> <!-- col.// -->
+            @endforeach
+
+
+
+        </div> <!-- row end.// -->
+
             @else
-                <h4>No item in wishlist</h4>
+                <h4>{{trans('message.Noiteminwishlist')}} </h4>
             @endif
-        </div>
-    </div>
-</main>
+
+
+</div>
+
+ </main> <!-- col.// -->
+
+

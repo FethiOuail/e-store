@@ -17,6 +17,8 @@ class ShopComponent extends Component
     public $min_price=1;
     public $max_price=1000;
 
+    public $list = 0;
+
     public function mount()
     {
         $this->sorting = "default";
@@ -47,6 +49,12 @@ class ShopComponent extends Component
     {
         Cart::instance('wishlist')->add($product_id,$product_name,1,$product_price)->associate('App\Models\Product');
         $this->emitTo('wishlist-count-component', 'refreshComponent');
+
+    }
+
+    public function list($list)
+    {
+        $this->list = $list;
 
     }
 

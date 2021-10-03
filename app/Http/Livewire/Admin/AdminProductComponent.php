@@ -16,7 +16,8 @@ class AdminProductComponent extends Component
         $image = $product->image;
         $images = $product->images;
 
-        if ($image) {
+
+        if(file_exists("assets/images/products'.'/'.$product->image")) {
             unlink('assets/images/products'.'/'.$product->image);
         }
 
@@ -27,7 +28,10 @@ class AdminProductComponent extends Component
             {
                 if($image)
                 {
-                    unlink('assets/images/products'.'/'.$image);
+
+                    if(file_exists("assets/images/products'.'/'.$image")) {
+                        unlink('assets/images/products'.'/'.$image);
+                    }
                 }
             }
         }
@@ -43,7 +47,7 @@ class AdminProductComponent extends Component
 
     public function render() {
 
-        $products = Product::paginate(10);
+        $products = Product::paginate(20);
 
         return view('livewire.admin.admin-product-component', ['products'=> $products])->layout('layouts.base');
     }

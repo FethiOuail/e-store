@@ -1,16 +1,13 @@
-<div class="wrap-icon-section minicart">
-    <a href="{{ route('product.cart') }}" class="link-direction">
-        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-        <div class="left-info">
+ <a href="{{ route('product.cart') }}" class="widget-header mr-2">
+        <div class="icon">
+            <i class="icon-sm rounded-circle border fa fa-shopping-cart"></i>
             @if ( Cart::instance('cart')->count() > 0)
+                <span class="notify"> {{  Cart::instance('cart')->count() }}</span>
+            @else
 
-                <span class="index"> {{  Cart::instance('cart')->count() }} items</span>
-
+                <span class="notify">0</span>
             @endif
-
-            <span class="title">CART</span>
 
         </div>
     </a>
-</div>
 

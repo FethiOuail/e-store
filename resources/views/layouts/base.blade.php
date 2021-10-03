@@ -1,541 +1,295 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Home</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/images/favicon.ico')}}"/>
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic&amp;subset=latin,latin-ext" rel="stylesheet"/>
-	<link href="https://fonts.googleapis.com/css?family=Open%20Sans:300,400,400italic,600,600italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet"/>
+<!DOCTYPE HTML>
 
-	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/animate.css')}}"/>
-	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/font-awesome.min.css')}}"/>
+@if(App::getLocale('ar') == 'ar')
+    <html lang="ar" dir="rtl">
 
-{{--
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/rtlbootstrap.min.css')}}"/>
---}}
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css')}}"/>
+    @else
+        <html lang="en" dir="ltr">
+        @endif
 
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="pragma" content="no-cache" />
+            <meta http-equiv="cache-control" content="max-age=604800" />
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-{{--
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/rlbootstrap.min.css')}}"/>
---}}
+            <title>MM Store</title>
 
+            <link href="{{asset('assets/images/favicon.ico')}}" rel="shortcut icon" type="image/x-icon">
 
+            <!-- jQuery -->
+            <script src="{{asset('assets/js/jquery-2.0.0.min.js')}}" type="text/javascript"></script>
 
-
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.carousel.min.css')}}"/>
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/flexslider.css')}}"/>
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/chosen.min.css')}}"/>
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css')}}"/>
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/color-01.css')}}"/>
-
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+            <!-- Bootstrap4 files-->
+            <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}" type="text/javascript"></script>
 
 
 
-    {{--
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" integrity="sha512-aEe/ZxePawj0+G2R+AaIxgrQuKT68I28qh+wgLrcAJOz3rxCP+TwrK5SPN+E5I+1IQjNtcfvb96HDagwrKRdBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    --}}
+            @if(App::getLocale('ar') == 'ar')
+
+                <link rel="stylesheet" href="{{asset('assets/css/rtlbootstrap.css')}}"  >
+
+            @else
+                <link href="{{asset('assets/css/bootstrap.css')}}" rel="stylesheet" type="text/css"/>
+        @endif
 
 
-        <link rel="stylesheet" href="{{ asset('assets/css/nouislider.min.css')}}"/>
+            <link rel="stylesheet" type="text/css" href="{{asset('assets/DataTables/datatables.min.css')}}"/>
 
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css')}}"/>
+
+            <!-- plugin: slickslider -->
+            <link href="{{asset('assets/plugins/slickslider/slick.css')}}" rel="stylesheet" type="text/css" />
+            <link href="{{asset('assets/plugins/slickslider/slick-theme.css')}}" rel="stylesheet" type="text/css" />
+            <script src="{{asset('assets/plugins/slickslider/slick.min.js')}}"></script>
+
+            <!-- plugin: owl carousel  -->
+            <link href="{{asset('assets/plugins/owlcarousel/assets/owl.carousel.css')}}" rel="stylesheet">
+            <link href="{{asset('assets/plugins/owlcarousel/assets/owl.theme.default.css')}}" rel="stylesheet">
+            <script src="{{asset('assets/plugins/owlcarousel/owl.carousel.min.js')}}"></script>
 
 
-    @livewireStyles
 
-    </head>
-    <body class="home-page home-01 ">
+            <!-- Font awesome 5 -->
+            <link href="{{asset('assets/fonts/fontawesome/css/all.min.css')}}" type="text/css" rel="stylesheet">
 
-        <!-- mobile menu -->
-        <div class="mercado-clone-wrap">
-            <div class="mercado-panels-actions-wrap">
-                <a class="mercado-close-btn mercado-close-panels" href="#">x</a>
+            <!-- custom style -->
+            <link href="{{asset('assets/css/ui.css')}}" rel="stylesheet" type="text/css"/>
+            <link href="{{asset('assets/css/responsive.css')}}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+
+            <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}"/>
+
+            <link rel="stylesheet" href="{{ asset('assets/css/nouislider.min.css')}}"/>
+
+            <!-- custom javascript -->
+            <script src="{{asset('assets/js/script.js')}}" type="text/javascript"></script>
+
+            <script type="text/javascript">
+                /// some script
+
+                // jquery ready start
+                $(document).ready(function() {
+                    // jQuery code
+
+                });
+                // jquery end
+            </script>
+
+            @stack('scripts_top')
+
+            @livewireStyles
+        </head>
+        <body>
+
+        @php
+            $setting = DB::table('settings')->find(1)
+
+        @endphp
+
+
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
+            <div class="brand-wrap " style="margin-right: 10px; margin-left: 10px">
+                <img class="logo" src="{{asset('assets/images/logo2.png')}}">
+            </div> <!-- brand-wrap.// -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link pl-0" data-toggle="" href="/"><strong> <i class="fa fa-home"></i> &nbsp {{__('message.home')}} </strong></a>
+
+                </li>
+            </ul>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav bg-dark m-0  p-3 p-lg-0">
+                    <li class="d-inline d-lg-none">
+                        <button data-toggle="collapse" data-target="#nav" class="close float-right">&times;</button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/shop"><i class="fa fa-shopping-bag"></i> {{trans('message.Shop')}} </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart"> <i class="fa fa-shopping-cart"></i> {{trans('message.Cart')}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/checkout"> <i class="fa fa-shipping-fast"></i> {{trans('message.checkout')}} </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> <i class="fa fa-info-circle"></i> {{ trans('footer.About_us')  }}</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('contact')}}"> <i class="fa fa-info-circle"></i> {{ trans('message.contactUs')  }}</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-language"></i> @if (App::getLocale('ar') == 'ar') العربية
+
+                            @else
+                                English
+                            @endif
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right" style="max-width: 100px;">
+                            <li><a class="dropdown-item" href="{{ route('set.language', 'ar') }}">Arabic</a></li>
+                            <li><a class="dropdown-item" href="{{ route('set.language', 'en') }}">English </a></li>
+                        </ul>
+                    </li>
+
+                </ul>
             </div>
-            <div class="mercado-panels"></div>
-        </div>
+        </nav>
 
-        <!--header-->
-        <header id="header" class="header header-style-1">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="topbar-menu-area">
-                        <div class="container">
-                            <div class="topbar-menu left-menu">
-                                <ul>
-                                    <li class="menu-item" >
-                                        <a title="Hotline: (+123) 456 789" href="#" ><span class="icon label-before fa fa-mobile"></span>Hotline: (+213) 0656 28 20 58</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="topbar-menu right-menu">
-                                <ul>
-                                    <li class="menu-item lang-menu menu-item-has-children parent">
-                                        <a title="English" href="#"><span class="img label-before"><img src="{{asset('assets/images/lang-en.png')}}" alt="lang-en"></span>English<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                        <ul class="submenu lang" >
+        <br>
+        <br>
 
-                                            <li class="menu-item" ><a title="french" href="#"><span class="img label-before"><img src="{{asset('assets/images/lang-fra.png')}}" alt="lang-fre"></span>French</a></li>
-
-                                            <li class="menu-item" ><a title="العربية" href="#"><span class="img label-before"><img src="{{asset('assets/images/lang-ar.png')}}" alt="lang-ar"></span>Arabic</a></li>
+        <header class="section-header py-2">
 
 
+            <section class="header-main border-bottom">
+                <div class="container">
+                    <div class="row align-items-center">
 
-                                        </ul>
-                                    </li>
+                        <div class="col-lg-6 col-sm-12">
 
-                                    @if (Route::has('login'))
-
-                                        @auth
-
-                                            @if (Auth::user()->utype === 'ADM')
-
-                                                <li class="menu-item menu-item-has-children parent" >
-                                                    <a title="My Account" href="#"> My Account ({{Auth::user()->name}})<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                                    <ul class="submenu curency" >
-                                                        <li class="menu-item" >
-                                                            <a title="Dashboard" href="{{ route('admin.dashboard') }}"> Dashboard </a>
-                                                        </li>
-
-                                                        <li class="menu-item">
-                                                            <a title="Categories" href="{{route('admin.categories')}}"> Categories</a>
-                                                        </li>
-
-                                                        <li class="menu-item" >
-                                                            <a title="All Products" href="{{ route('admin.products') }}">All Products</a>
-                                                        </li>
-
-
-
-                                                        <li class="menu-item">
-                                                            <a title="Manage Home Slider" href="{{route('admin.homesliders')}}">Manage Home Slider</a>
-                                                        </li>
-
-                                                        <li class="menu-item">
-                                                            <a title="Manage Home Categories" href="{{route('admin.homecategories')}}">Manage Home Categories</a>
-                                                        </li>
-
-                                                        <li>
-                                                            <a href="{{route('admin.onsale')}}">Manage Sale</a>
-                                                        </li>
-
-                                                        <li class="menu-item">
-                                                            <a title="All Coupon" href="{{route('admin.coupons')}}">All Coupon</a>
-                                                        </li>
-
-
-                                                        <form id="logout-form" method="POST" action=" {{ route('logout') }} ">
-                                                            @csrf
-                                                            <li class="menu-item">
-                                                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Logout</a>
-                                                            </li>
-                                                        </form>
-
-                                                    </ul>
-                                                </li>
-
-                                            @else
-
-
-                                                <li class="menu-item menu-item-has-children parent" >
-                                                    <a title="My Account" href="#"> My Account ({{Auth::user()->name}})<i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                                    <ul class="submenu curency" >
-                                                        <li class="menu-item" >
-                                                            <a title="Dashboard" href="{{ route('user.dashboard') }}"> Dashboard </a>
-                                                        </li>
-
-                                                        <li class="menu-item">
-                                                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Logout</a>
-                                                        </li>
-
-                                                        <form id="logout-form" method="POST" action=" {{ route('logout') }} ">
-                                                            @csrf
-
-                                                        </form>
-
-                                                    </ul>
-                                                </li>
-
-                                            @endif
-
-                                        @else
-                                            <li class="menu-item" ><a title="Register or Login" href="{{ route('login') }}">Login</a></li>
-                                            <li class="menu-item" ><a title="Register or Login" href="{{ route('register')}}">Register</a></li>
-
-                                        @endif
-
-
-                                    @endif
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="container">
-                        <div class="mid-section main-info-area">
-
-                            <div class="wrap-logo-top left-section">
-                                <a href="index.html" class="link-to-home"><img src="{{ asset('assets/images/logo3.png') }}" alt="mercado"></a>
-                            </div>
 
 
                             @livewire('header-search-component')
 
-                            <div class="wrap-icon right-section">
 
-
+                        </div> <!-- col.// -->
+                        <div class="col-lg-5 col-xl-4 col-sm-12">
+                            <div class="widgets-wrap float-md-right">
                                 @livewire('wishlist-count-component')
+
 
                                 @livewire('cart-count-component')
 
+                            </div>
+                                <div class="widget-header icontext">
+                                    <a href="#" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
+                                    <div class="text">
 
-                                <div class="wrap-icon-section show-up-after-1024">
-                                    <a href="#" class="mobile-navigation">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </a>
+                                        @if (Route::has('login'))
+
+                                            @auth
+
+                                                @if (Auth::user()->utype === 'ADM')
+                                                    <span class=""> {{ trans('message.Welcome') }}  {{Auth::user()->name}}</span>
+                                                    <ul class="navbar-nav">
+
+                                                    <li class="nav-item dropdown">
+                                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false"> My Account</a>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" title="Dashboard" href="{{ route('admin.dashboard') }}"> {{trans('message.Dashboard')}} </a>
+
+
+                                                            <a  class="dropdown-item"  title="Categories" href="{{route('admin.categories')}}"> {{trans('message.Categories')}} </a>
+                                                            <a  class="dropdown-item" title="All Products" href="{{ route('admin.products') }}">{{trans('message.AllProducts')}}</a>
+                                                            <a  class="dropdown-item" title="Manage Home Slider" href="{{route('admin.homesliders')}}">{{trans('message.ManageHomeSlider')}}</a>
+                                                            <a class="dropdown-item"  title="Manage Home Categories" href="{{route('admin.homecategories')}}">{{trans('message.ManageHomeCategories')}}</a>
+                                                            <a class="dropdown-item"  href="{{route('admin.onsale')}}">{{trans('message.SaleSetting')}}</a>
+
+
+                                                            <a class="dropdown-item"  href="{{route('admin.coupons')}}"> {{trans('message.AllCoupon')}} </a>
+
+                                                            <a class="dropdown-item"  href="{{route('admin.orders')}}">{{trans('message.AllOrders')}} </a>
+                                                            <a class="dropdown-item"  href="{{route('admin.setting')}}">{{trans('message.Settings')}} </a>
+
+                                                            <a class="dropdown-item"  title="Contact Us Messages" href="{{route('admin.contact')}}">  {{trans('message.ContactUsMessages')}}</a>
+
+                                                            <div class="dropdown-divider"></div>
+                                                            <form id="logout-form" method="POST" action=" {{ route('logout') }} ">
+                                                                @csrf
+
+                                                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">  {{trans('message.Logout')}}</a>
+
+                                                            </form>
+                                                        </div>
+                                                    </li>
+                                                @else
+
+                                                            <span class=""> {{ trans('message.Welcome') }}  {{Auth::user()->name}}</span>
+                                                            <ul class="navbar-nav">
+
+                                                                <li class="nav-item dropdown">
+                                                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false"> My Account</a>
+                                                                    <div class="dropdown-menu">
+
+                                                                        <a  class="dropdown-item"  title="Dashboard" href="{{ route('user.dashboard') }}"> {{ trans('message.Dashboard') }}  </a>
+                                                                        <a  class="dropdown-item"  title="Dashboard" href="{{ route('user.changepassword') }}">{{ trans('message.ChangePassword') }}   </a>
+                                                                        <a  class="dropdown-item"  title="Dashboard" href="{{ route('user.orders') }}">{{ trans('message.MyOrders') }}   </a>
+
+
+
+
+                                                                <div class="dropdown-divider"></div>
+                                                                        <form id="logout-form" method="POST" action=" {{ route('logout') }} ">
+                                                                            @csrf
+
+                                                                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ trans('message.Logout') }}  </a>
+
+                                                                        </form>
+                                                                    </div>
+                                                                </li>
+
+
+                                                @endif
+
+                                            @else
+                                                <div>
+                                                    <a href="{{ route('login') }}">{{ trans('message.Signin') }}</a>
+                                                    <a href="{{ route('register')}}"> {{ trans('message.Register') }} </a>
+                                                </div>
+                                            @endif
+
+                                        @endif
+
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
 
-                        </div>
+                            </div> <!-- widgets-wrap.// -->
+                        </div> <!-- col.// -->
                     </div>
 
-                    <div class="nav-section header-sticky">
-                    {{--    <div class="header-nav-section">
-                            <div class="container">
-                                <ul class="nav menu-nav clone-main-menu" id="mercado_haead_menu" data-menuname="Sale Info" >
-                                    <li class="menu-item"><a href="#" class="link-term">Weekly Featured</a><span class="nav-label hot-label">hot</span></li>
-                                    <li class="menu-item"><a href="#" class="link-term">Hot Sale items</a><span class="nav-label hot-label">hot</span></li>
-                                    <li class="menu-item"><a href="#" class="link-term">Top new items</a><span class="nav-label hot-label">hot</span></li>
-                                    <li class="menu-item"><a href="#" class="link-term">Top Selling</a><span class="nav-label hot-label">hot</span></li>
-                                    <li class="menu-item"><a href="#" class="link-term">Top rated items</a><span class="nav-label hot-label">hot</span></li>
-                                </ul>
-                            </div>
-                        </div>--}}
 
-                        <div class="primary-nav-section">
-                            <div class="container">
-                                <ul class="nav primary clone-main-menu" id="mercado_main" data-menuname="Main menu" >
-                                    <li class="menu-item home-icon">
-                                        <a href="/" class="link-term mercado-item-title"><i class="fa fa-home" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="about-us.html" class="link-term mercado-item-title">About Us</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="/shop" class="link-term mercado-item-title">Shop</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="/cart" class="link-term mercado-item-title">Cart</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="/checkout" class="link-term mercado-item-title">Checkout</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="contact-us.html" class="link-term mercado-item-title">Contact Us</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </section> <!-- header-main .// -->
 
-        </header>
+
+        </header> <!-- section-header.// -->
+
+
+
 
         {{$slot}}
 
-        <footer id="footer">
-            <div class="wrap-footer-content footer-style-1">
-
-                <div class="wrap-function-info">
-                    <div class="container">
-                        <ul>
-                            <li class="fc-info-item">
-                                <i class="fa fa-truck" aria-hidden="true"></i>
-                                <div class="wrap-left-info">
-                                    <h4 class="fc-name">Free Shipping</h4>
-                                    <p class="fc-desc">Free On Oder Over 200 DZ</p>
-                                </div>
-
-                            </li>
-                            <li class="fc-info-item">
-                                <i class="fa fa-recycle" aria-hidden="true"></i>
-                                <div class="wrap-left-info">
-                                    <h4 class="fc-name">Guarantee</h4>
-                                    <p class="fc-desc">30 Days Money Back</p>
-                                </div>
-
-                            </li>
-                            <li class="fc-info-item">
-                                <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
-                                <div class="wrap-left-info">
-                                    <h4 class="fc-name">Safe Payment</h4>
-                                    <p class="fc-desc">Safe your online payment</p>
-                                </div>
-
-                            </li>
-                            <li class="fc-info-item">
-                                <i class="fa fa-life-ring" aria-hidden="true"></i>
-                                <div class="wrap-left-info">
-                                    <h4 class="fc-name">Online Suport</h4>
-                                    <p class="fc-desc">We Have Support 24/7</p>
-                                </div>
-
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!--End function info-->
-
-                <div class="main-footer-content">
-
-                    <div class="container">
-
-                        <div class="row">
-
-                            <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-                                <div class="wrap-footer-item">
-                                    <h3 class="item-header">Contact Details</h3>
-                                    <div class="item-content">
-                                        <div class="wrap-contact-detail">
-                                            <ul>
-                                                <li>
-                                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                    <p class="contact-txt">Rue Sahraoui Said, Batna , ALgeria</p>
-                                                </li>
-                                                <li>
-                                                    <i class="fa fa-phone" aria-hidden="true"></i>
-                                                    <p class="contact-txt">(+213) 0656282058</p>
-                                                </li>
-                                                <li>
-                                                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                                                    <p class="contact-txt">Contact@yourcompany.com</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-
-                                <div class="wrap-footer-item">
-                                    <h3 class="item-header">Hot Line</h3>
-                                    <div class="item-content">
-                                        <div class="wrap-hotline-footer">
-                                            <span class="desc">Call Us toll Free</span>
-                                            <b class="phone-number">(+213) 0656282058</b>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="wrap-footer-item footer-item-second">
-                                    <h3 class="item-header">Sign up for newsletter</h3>
-                                    <div class="item-content">
-                                        <div class="wrap-newletter-footer">
-                                            <form action="#" class="frm-newletter" id="frm-newletter">
-                                                <input type="email" class="input-email" name="email" value="" placeholder="Enter your email address">
-                                                <button class="btn-submit">Subscribe</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 box-twin-content ">
-                                <div class="row">
-                                    <div class="wrap-footer-item twin-item">
-                                        <h3 class="item-header">My Account</h3>
-                                        <div class="item-content">
-                                            <div class="wrap-vertical-nav">
-                                                <ul>
-                                                    <li class="menu-item"><a href="#" class="link-term">My Account</a></li>
-                                                    <li class="menu-item"><a href="#" class="link-term">Brands</a></li>
-                                                    <li class="menu-item"><a href="#" class="link-term">Gift Certificates</a></li>
-                                                    <li class="menu-item"><a href="#" class="link-term">Affiliates</a></li>
-                                                    <li class="menu-item"><a href="#" class="link-term">Wish list</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wrap-footer-item twin-item">
-                                        <h3 class="item-header">Infomation</h3>
-                                        <div class="item-content">
-                                            <div class="wrap-vertical-nav">
-                                                <ul>
-                                                    <li class="menu-item"><a href="#" class="link-term">Contact Us</a></li>
-                                                    <li class="menu-item"><a href="#" class="link-term">Returns</a></li>
-                                                    <li class="menu-item"><a href="#" class="link-term">Site Map</a></li>
-                                                    <li class="menu-item"><a href="#" class="link-term">Specials</a></li>
-                                                    <li class="menu-item"><a href="#" class="link-term">Order History</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-
-                            <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-                                <div class="wrap-footer-item">
-                                    <h3 class="item-header">We Using Safe Payments:</h3>
-                                    <div class="item-content">
-                                        <div class="wrap-list-item wrap-gallery">
-                                            <img src="{{asset('assets/images/payment.png')}}" style="max-width: 260px;">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-                                <div class="wrap-footer-item">
-                                    <h3 class="item-header">Social network</h3>
-                                    <div class="item-content">
-                                        <div class="wrap-list-item social-network">
-                                            <ul>
-                                                <li><a href="#" class="link-to-item" title="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                                <li><a href="#" class="link-to-item" title="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                                <li><a href="#" class="link-to-item" title="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-                                <div class="wrap-footer-item">
-                                    <h3 class="item-header">Dowload App</h3>
-                                    <div class="item-content">
-                                        <div class="wrap-list-item apps-list">
-                                            <ul>
-                                                <li><a href="#" class="link-to-item" title="our application on apple store"><figure><img src="{{asset('assets/images/brands/apple-store.png')}}" alt="apple store" width="128" height="36"></figure></a></li>
-                                                <li><a href="#" class="link-to-item" title="our application on google play store"><figure><img src="{{asset('assets/images/brands/google-play-store.png')}}" alt="google play store" width="128" height="36"></figure></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                {{--    <div class="wrap-back-link">
-                        <div class="container">
-                            <div class="back-link-box">
-                                <h3 class="backlink-title">Quick Links</h3>
-                                <div class="back-link-row">
-                                    <ul class="list-back-link" >
-                                        <li><span class="row-title">Mobiles:</span></li>
-                                        <li><a href="#" class="redirect-back-link" title="mobile">Mobiles</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="yphones">YPhones</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Gianee Mobiles GL">Gianee Mobiles GL</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Mobiles Karbonn">Mobiles Karbonn</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Mobiles Viva">Mobiles Viva</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Mobiles Intex">Mobiles Intex</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Mobiles Micrumex">Mobiles Micrumex</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Mobiles Bsus">Mobiles Bsus</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Mobiles Samsyng">Mobiles Samsyng</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Mobiles Lenova">Mobiles Lenova</a></li>
-                                    </ul>
-
-                                    <ul class="list-back-link" >
-                                        <li><span class="row-title">Tablets:</span></li>
-                                        <li><a href="#" class="redirect-back-link" title="Plesc YPads">Plesc YPads</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Samsyng Tablets" >Samsyng Tablets</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Qindows Tablets" >Qindows Tablets</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Calling Tablets" >Calling Tablets</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Micrumex Tablets" >Micrumex Tablets</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Lenova Tablets Bsus" >Lenova Tablets Bsus</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Tablets iBall" >Tablets iBall</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Tablets Swipe" >Tablets Swipe</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Tablets TVs, Audio" >Tablets TVs, Audio</a></li>
-                                    </ul>
-
-                                    <ul class="list-back-link" >
-                                        <li><span class="row-title">Fashion:</span></li>
-                                        <li><a href="#" class="redirect-back-link" title="Sarees Silk" >Sarees Silk</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="sarees Salwar" >sarees Salwar</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Suits Lehengas" >Suits Lehengas</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Biba Jewellery" >Biba Jewellery</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Rings Earrings" >Rings Earrings</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Diamond Rings" >Diamond Rings</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Loose Diamond Shoes" >Loose Diamond Shoes</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="BootsMen Watches" >BootsMen Watches</a></li>
-                                        <li><a href="#" class="redirect-back-link" title="Women Watches" >Women Watches</a></li>
-                                    </ul>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>--}}
-
-                </div>
-
-
-                <br>
-                <div class="coppy-right-box">
-                    <div class="container">
-                        <div class="coppy-right-item item-left">
-                            <p class="coppy-right-text">Copyright © 2021 Anwar Kamel Ouail. All rights reserved</p>
-                        </div>
-                        <div class="coppy-right-item item-right">
-                            <div class="wrap-nav horizontal-nav">
-                                <ul>
-                                    <li class="menu-item"><a href="about-us.html" class="link-term">About us</a></li>
-                                    <li class="menu-item"><a href="privacy-policy.html" class="link-term">Privacy Policy</a></li>
-                                    <li class="menu-item"><a href="terms-conditions.html" class="link-term">Terms & Conditions</a></li>
-                                    <li class="menu-item"><a href="return-policy.html" class="link-term">Return Policy</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <script src="{{ asset('assets/js/jquery-1.12.4.minb8ff.js?ver=1.12.4')}}"></script>
-        <script src="{{ asset('assets/js/jquery-ui-1.12.4.minb8ff.js?ver=1.12.4')}}"></script>
-        <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
-        <script src="{{ asset('assets/js/jquery.flexslider.js')}}"></script>
-    {{--	<script src="{{ asset('assets/js/chosen.jquery.min.js')}}"></script>--}}
-	<script src="{{ asset('assets/js/owl.carousel.min.js')}}"></script>
-	<script src="{{ asset('assets/js/jquery.countdown.min.js')}}"></script>
-	<script src="{{ asset('assets/js/jquery.sticky.js')}}"></script>
-	<script src="{{ asset('assets/js/functions.js')}}"></script>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-
-
-    <script src="{{ asset('assets/js/moment.min.js')}}"></script>
-
-        <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js')}}"></script>
 
 
 
 
-{{--
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js" integrity="sha512-GDey37RZAxFkpFeJorEUwNoIbkTwsyC736KNSYucu1WJWFK9qTdzYub8ATxktr6Dwke7nbFaioypzbDOQykoRg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
---}}
+
+        <!-- ========================= FOOTER ========================= -->
+
+        @livewire('footer-component')
+        <!-- ========================= FOOTER END // ========================= -->
 
 
-  <script  src="{{ asset('assets/js/nouislider.min.js')}}"  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <script type="text/javascript" src="{{asset('assets/DataTables/datatables.min.js')}}"></script>
+        @livewireScripts
+
+        <script  src="{{ asset('assets/js/nouislider.min.js')}}"  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-  @livewireScripts
+        @stack('scripts')
 
 
-  @stack('scripts')
-</body>
-</html>
+
+
+
+        </body>
+
+
+        </html>

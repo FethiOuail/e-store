@@ -1,266 +1,215 @@
-<main id="main" class="main-site left-sidebar">
 
-    <div class="container">
+<main>
+    <section class="section-pagetop bg">
+        <div class="container">
+            <h2 class="title-page"></h2>
+            <nav>
+                <ol class="breadcrumb text-white">
+                    <li class="breadcrumb-item"><a href="#">{{trans('message.home')}}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> {{trans('message.shop')}} </li>
+                </ol>
+            </nav>
+        </div> <!-- container //  -->
+    </section>
+    <br>
+    <section class="section-content padding ">
+        <div class="container">
 
-        <div class="wrap-breadcrumb">
-            <ul>
-                <li class="item-link"><a href="#" class="link">home</a></li>
-                <li class="item-link"><span>Digital & Electronics</span></li>
-            </ul>
-        </div>
-        <div class="row">
+            <div class="row">
+                <aside class="col-md-3">
 
-            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
+                    <div class="card">
+                        <article class="filter-group">
+                            <header class="card-header">
+                                <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
+                                    <i class="icon-control fa fa-chevron-down"></i>
+                                    <h6 class="title"> {{trans('message.AllCategories')}} </h6>
+                                </a>
+                            </header>
+                            <div class="filter-content collapse show" id="collapse_1" style="">
+                                <div class="card-body">
 
-                <div class="banner-shop">
-                    <a href="#" class="banner-link">
-                        <figure><img src="{{asset('assets/images/shop-banner.jpg')}}" alt=""></figure>
-                    </a>
-                </div>
 
-                <div class="wrap-shop-control">
+                                    <ul class="list-menu">
+                                        @foreach($categories as $category )
 
-                    <h1 class="shop-title">Digital & Electronics</h1>
+                                            <li>
+                                                <a href="{{route('product.category',['category_slug'=>$category->slug])}}">{{$category->name}}  </a>
+                                            </li>
 
-                    <div class="wrap-right">
 
-                        <div class="sort-item orderby ">
-                            <select name="orderby" class="use-chosen" wire:model="sorting" >
-                                <option value="default" selected="selected">Default sorting</option>
+                                        @endforeach
 
-                                <option value="date">Sort by newness</option>
-                                <option value="price">Sort by price: low to high</option>
-                                <option value="price-desc">Sort by price: high to low</option>
+                                    </ul>
+
+                                </div> <!-- card-body.// -->
+                            </div>
+                        </article> <!-- filter-group  .// -->
+
+
+                        <article class="filter-group">
+                            <header class="card-header">
+                                <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+                                    <i class="icon-control fa fa-chevron-down"></i>
+                                    <h6 class="title">{{trans('message.Pricerange')}}  </h6>
+                                </a>
+                            </header>
+                            <div class="filter-content collapse show" id="collapse_3" style="">
+                                <div class="card-body">
+
+
+
+                                </div><!-- card-body.// -->
+                            </div>
+
+
+
+                        </article> <!-- filter-group .// -->
+                    </div> <!-- card.// -->
+
+                </aside> <!-- col.// -->
+
+
+                <main class="col-md-9" >
+
+                    <header class="border-bottom mb-4 pb-3">
+                        <div class="form-inline">
+
+                            <select class="mr-md-auto mr-2 form-control" name="orderby" class="use-chosen" wire:model="pagesize">
+                                <option value="12" selected="selected">12 {{trans('message.perpage')}}</option>
+                                <option value="16">16 {{trans('message.perpage')}}</option>
+                                <option value="18">18 {{trans('message.perpage')}}</option>
+                                <option value="21">21 {{trans('message.perpage')}}</option>
+                                <option value="24">24 {{trans('message.perpage')}}</option>
+                                <option value="30">30 {{trans('message.perpage')}}</option>
+                                <option value="32">32 {{trans('message.perpage')}}</option>
                             </select>
-                        </div>
 
-                        <div class="sort-item product-per-page" >
-                            <select name="post-per-page" class="use-chosen"  wire:model="pagesize" >
-                                <option value="12" selected="selected">12 per page</option>
-                                <option value="16">16 per page</option>
-                                <option value="18">18 per page</option>
-                                <option value="21">21 per page</option>
-                                <option value="24">24 per page</option>
-                                <option value="30">30 per page</option>
-                                <option value="32">32 per page</option>
+                            <select class="mr-2 form-control" name="orderby" class="use-chosen" wire:model="sorting">
+                                <option value="default" selected="selected">{{trans('message.Defaultsorting')}}</option>
+                                <option value="date">{{trans('message.Sortbynewness')}}</option>
+                                <option value="price">{{trans('message.lowtohigh')}}</option>
+                                <option value="price-desc">{{trans('message.hightolow')}}</option>
                             </select>
+
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-outline-secondary" data-toggle="tooltip" title=""
+                                   data-original-title="List view">
+                                    <i class="fa fa-bars"></i></a>
+                                <a href="#" class="btn  btn-outline-secondary active" data-toggle="tooltip" title=""
+                                   data-original-title="Grid view">
+                                    <i class="fa fa-th"></i></a>
+                            </div>
                         </div>
-
-                        <div class="change-display-mode">
-                            <a href="#" class="grid-mode display-mode active"><i class="fa fa-th"></i>Grid</a>
-                            <a href="list.html" class="list-mode display-mode"><i class="fa fa-th-list"></i>List</a>
-                        </div>
-
-                    </div>
-
-                </div><!--end wrap shop control-->
+                    </header><!-- sect-heading -->
 
 
-                @if($products->count() > 0)
+                    @if($products->count() > 0)
+
+                    <div class="row">
+
+                        <style>
+                            svg {
+                                overflow: hidden;
+                                vertical-align: middle;
+                                display: none;
+                            }
+                        </style>
 
 
 
-                <div class="row">
-
-                    <ul class="product-list grid-products equal-container">
-
+                        @php
+                            $witems = Cart::instance('wishlist')->content()->pluck('id');
+                        @endphp
 
                         @foreach ($products as $product)
 
-
-
-                            <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-                                <div class="product product-style-3 equal-elem ">
-                                    <div class="product-thumnail">
-                                        <a href="{{route('product.details',['slug'=>$product->slug])}}" title="{{ $product->name }}">
-                                            <figure><img src="{{asset('assets/images/products/')}}/{{ $product->image }}" alt="{{ $product->name }}"></figure>
+                            <div class="col-md-4">
+                                <figure class="card card-product-grid">
+                                    <div class="img-wrap">
+                                        <span class="badge badge-danger"> {{trans('message.NEW')}}  </span>
+                                        <a href="{{route('product.details',['slug'=>$product->slug])}}"
+                                           title="{{ $product->name }}">
+                                            <img src="{{asset('assets/images/products/')}}/{{ $product->image }}"
+                                                 alt="{{ $product->name }}">
                                         </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <a href="{{route('product.details',['slug'=>$product->id])}}" class="product-name"><span> {{ $product->name }} </span></a>
-                                        <div class="wrap-price"><span class="product-price">{{ $product->regular_price }}</span></div>
-                                        <a href="#" class="btn add-to-cart" wire:click.prevent="store('{{$product->id}}','{{$product->name}}', '{{$product->regular_price}}','{{$product->image}}', '{{$product->slug}}')">Add To Cart</a>
-                                    </div>
-                                </div>
-                            </li>
+
+                                        <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
+                                    </div> <!-- img-wrap.// -->
+                                    <figcaption class="info-wrap">
+                                        <div class="fix-height">
+                                            <a href="#" class="title"> {{ substr($product->name, 1, 50) }}.. </a>
+                                            <div class="price-wrap mt-2">
+                                                @if($product->sale_price)
+
+                                                    <span class="price">{{$product->sale_price}}</span>
+                                                    <small class="price-old "> <del>{{$product->regular_price}}</del></small>
+
+                                                @else
+                                                    <span class="price"> {{$product->regular_price}}  </span>
+                                                @endif
+
+                                            </div> <!-- price-wrap.// -->
+                                        </div>
+                                        <a href="#"  wire:click.prevent="store('{{$product->id}}','{{$product->name}}', '{{$product->regular_price}}','{{$product->image}}', '{{$product->slug}}')" class="btn btn-block btn-primary">{{trans('details.Addtocart')}} <i class="fas fa-shopping-cart"></i></a>
+                                    </figcaption>
+                                </figure>
+                            </div> <!-- col.// -->
 
                         @endforeach
 
 
 
-                    </ul>
-
-                </div>
-
-                @else
-
-                    <p style="padding-top: 30px;"> No Product</p>
-
-                @endif
+                    </div> <!-- row end.// -->
 
 
-
-                <div class="wrap-pagination-info">
 
                     {{$products->links()}}
 
-                    <ul class="page-numbers">
-                        <li><span class="page-number-item current" >1</span></li>
-                        <li><a class="page-number-item" href="#" >2</a></li>
-                        <li><a class="page-number-item" href="#" >3</a></li>
-                        <li><a class="page-number-item next-link" href="#" >Next</a></li>
-                    </ul>
-                    <p class="result-count">Showing 1-8 of 12 result</p>
-                </div>
-            </div><!--end main products area-->
+                    @else
 
-            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 sitebar">
-                <div class="widget mercado-widget categories-widget">
-                    <h2 class="widget-title">All Categories</h2>
-                    <div class="widget-content">
-                        <ul class="list-category">
+                        <p style="padding-top: 30px;"> {{trans('message.NoProduct')}} </p>
 
-                            @foreach($categories as $category )
-                                <li class="category-item">
+                    @endif
 
-                                    <a href="{{route('product.category',['category_slug'=>$category->slug])}}" class="cate-link">{{$category->name}}</a>
 
-                                </li>
 
-                            @endforeach
+                </main> <!-- col.// -->
 
-                        </ul>
-                    </div>
-                </div><!-- Categories widget-->
 
-                <div class="widget mercado-widget filter-widget brand-widget">
-                    <h2 class="widget-title">Brand</h2>
-                    <div class="widget-content">
-                        <ul class="list-style vertical-list list-limited" data-show="6">
-                            <li class="list-item"><a class="filter-link active" href="#">Fashion Clothings</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Laptop Batteries</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Printer & Ink</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">CPUs & Prosecsors</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Sound & Speaker</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Shop Smartphone & Tablets</a></li>
-                            <li class="list-item default-hiden"><a class="filter-link " href="#">Printer & Ink</a></li>
-                            <li class="list-item default-hiden"><a class="filter-link " href="#">CPUs & Prosecsors</a></li>
-                            <li class="list-item default-hiden"><a class="filter-link " href="#">Sound & Speaker</a></li>
-                            <li class="list-item default-hiden"><a class="filter-link " href="#">Shop Smartphone & Tablets</a></li>
-                            <li class="list-item"><a data-label='Show less<i class="fa fa-angle-up" aria-hidden="true"></i>' class="btn-control control-show-more" href="#">Show more<i class="fa fa-angle-down" aria-hidden="true"></i></a></li>
-                        </ul>
-                    </div>
-                </div><!-- brand widget-->
+            </div>
 
-                <div class="widget mercado-widget filter-widget price-filter">
-                    <h2 class="widget-title">Price</h2>
-                    <div class="widget-content">
-                        <div id="slider-range"></div>
-                        <p>
-                            <label for="amount">Price:</label>
-                            <input type="text" id="amount" readonly>
-                            <button class="filter-submit">Filter</button>
-                        </p>
-                    </div>
-                </div><!-- Price-->
+        </div> <!-- container .//  -->
 
-                <div class="widget mercado-widget filter-widget">
-                    <h2 class="widget-title">Color</h2>
-                    <div class="widget-content">
-                        <ul class="list-style vertical-list has-count-index">
-                            <li class="list-item"><a class="filter-link " href="#">Red <span>(217)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Yellow <span>(179)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Black <span>(79)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Blue <span>(283)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Grey <span>(116)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Pink <span>(29)</span></a></li>
-                        </ul>
-                    </div>
-                </div><!-- Color -->
-
-                <div class="widget mercado-widget filter-widget">
-                    <h2 class="widget-title">Size</h2>
-                    <div class="widget-content">
-                        <ul class="list-style inline-round ">
-                            <li class="list-item"><a class="filter-link active" href="#">s</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">M</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">l</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">xl</a></li>
-                        </ul>
-                        <div class="widget-banner">
-                            <figure><img src="{{asset('assets/images/size-banner-widget.jpg')}}" width="270" height="331" alt=""></figure>
-                        </div>
-                    </div>
-                </div><!-- Size -->
-
-                <div class="widget mercado-widget widget-product">
-                    <h2 class="widget-title">Popular Products</h2>
-                    <div class="widget-content">
-                        <ul class="products">
-                            <li class="product-item">
-                                <div class="product product-widget-style">
-                                    <div class="thumbnnail">
-                                        <a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                            <figure><img src="{{asset('assets/images/products/digital_1.jpg')}}" alt=""></figure>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-                                        <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="product-item">
-                                <div class="product product-widget-style">
-                                    <div class="thumbnnail">
-                                        <a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                            <figure><img src="{{asset('assets/images/products/digital_17.jpg')}}" alt=""></figure>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-                                        <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="product-item">
-                                <div class="product product-widget-style">
-                                    <div class="thumbnnail">
-                                        <a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                            <figure><img src="{{asset('assets/images/products/digital_18.jpg')}}" alt=""></figure>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-                                        <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="product-item">
-                                <div class="product product-widget-style">
-                                    <div class="thumbnnail">
-                                        <a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                            <figure><img src="{{asset('assets/images/products/digital_20.jpg')}}" alt=""></figure>
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-                                        <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                    </div>
-                                </div>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div><!-- brand widget-->
-
-            </div><!--end sitebar-->
-
-        </div><!--end row-->
-
-    </div><!--end container-->
+    </section>
 
 </main>
+
+
+
+
+@push('scripts')
+
+    <script>
+        var slider = document.getElementById('slider');
+        noUiSlider.create(slider, {
+            start: [1, 1000],
+            connect: true,
+            range: {
+                'min': 1,
+                'max': 1000
+            },
+            pips: {
+                mode: 'steps',
+                stepped: true,
+                density: 4
+            }
+        });
+
+        slider.noUiSlider.on('update', function (value) {
+        @this.set('min_price', value[0]);
+        @this.set('max_price', value[1]);
+        });
+    </script>
+@endpush
+

@@ -7,10 +7,10 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-md-6">
-                                All Slides
+                                <h4 class="card-title mb-4">  {{trans('message.AllSlides')}}   </h4>
                             </div>
                             <div class="col-md-6">
-                                <a href="{{route('admin.homeaddslider')}}" class="btn btn-success pull-right">Add New Slide</a>
+                                <a href="{{route('admin.homeaddslider')}}" class="btn btn-success pull-right">{{trans('message.AddNewSlide')}} </a>
                             </div>
                         </div>
                     </div>
@@ -22,21 +22,21 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Image</th>
-                                <th>Title</th>
-                                <th>Subtitle</th>
-                                <th>Price</th>
-                                <th>Link</th>
-                                <th>Status</th>
-                                <th>Date</th>
-                                <th>Action</th>
+                                <th>{{trans('message.Image')}} </th>
+                                <th>{{trans('message.Title')}} </th>
+                                <th>{{trans('message.Subtitle')}} </th>
+                                <th>{{trans('message.Price')}} </th>
+                                <th>{{trans('message.Link')}}</th>
+                                <th>{{trans('message.Status')}} </th>
+                                <th>{{trans('message.Date')}} </th>
+                                <th>{{trans('message.Action')}} </th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach ($sliders as $slider)
                                 <tr>
                                     <td>{{$slider->id}}</td>
-                                    <td><img src="{{asset('assets/images/sliders')}}/{{$slider->image}}" width="60" /></td>
+                                    <td><img src="{{asset('assets/images/sliders')}}/{{$slider->image}}" width="60"  alt="slidimage"/></td>
                                     <td>{{$slider->title}}</td>
                                     <td>{{$slider->subtitle}}</td>
                                     <td>{{$slider->price}}</td>
