@@ -1,4 +1,3 @@
-<div class="">
 
 
 @push('scripts_top')
@@ -120,6 +119,9 @@
     // jquery end
     </script>
 @endpush
+
+
+<div class="container">
 
 <style>
 
