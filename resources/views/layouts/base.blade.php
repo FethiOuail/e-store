@@ -57,10 +57,12 @@
             <link href="{{asset('assets/css/ui.css')}}" rel="stylesheet" type="text/css"/>
             <link href="{{asset('assets/css/responsive.css')}}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
 
-            <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}"/>
+
 
             <link rel="stylesheet" href="{{ asset('assets/css/nouislider.min.css')}}"/>
 
+
+            <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}"/>
             <!-- custom javascript -->
             <script src="{{asset('assets/js/script.js')}}" type="text/javascript"></script>
 
