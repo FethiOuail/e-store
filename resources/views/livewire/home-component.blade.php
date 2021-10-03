@@ -133,12 +133,7 @@
     }
 
 </style>
-
-<section class="section-main bg padding-y">
-
-
-
-
+    
 <div class="container">
 
     <div class="row">
@@ -202,6 +197,5 @@
 
     </div> <!-- row.// -->
 </div>
-</section>
 
 </div>
