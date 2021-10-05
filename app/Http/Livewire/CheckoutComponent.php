@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\OrderMail;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Shipping;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Cart;
 
@@ -83,7 +85,7 @@ class CheckoutComponent extends Component
             'line1' => 'required',
             'city' => 'required',
             'province' => 'required',
-            'country' => 'required',
+
             'zipcode' => 'required',
             'paymentmode' => 'required'
         ]);
@@ -102,7 +104,7 @@ class CheckoutComponent extends Component
         $order->line2 = $this->line2;
         $order->city = $this->city;
         $order->province = $this->province;
-        $order->country = $this->country;
+        $order->country = "Algeria";
         $order->zipcode = $this->zipcode;
         $order->status = 'ordered';
         $order->is_shipping_different = $this->ship_to_different ? 1:0;
@@ -163,13 +165,18 @@ class CheckoutComponent extends Component
 
 
         }
-      //  $this->sendOrderConfirmationMail($order);
+        $this->sendOrderConfirmationMail($order);
 
         $this->thankyou = 1;
         Cart::instance('cart')->destroy();
         session()->forget('checkout');
     }
 
+
+    public function sendOrderConfirmationMail($order)
+    {
+        Mail::to($order->email)->send(new OrderMail($order));
+    }
 
 
     public function verifyForCheckout()
@@ -204,6 +211,6 @@ class CheckoutComponent extends Component
     public function render()
     {
         $this->verifyForCheckout();
-        return view('livewire.checkout-component')->layout('layouts.base');;
+        return view('livewire.checkout-component')->layout('layouts.base');
     }
 }

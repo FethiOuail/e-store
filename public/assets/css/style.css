@@ -882,3 +882,60 @@ body {
     color: white;
     font-family: "Lato", sans-serif;
 }
+
+.banner-size-lg {
+    height: 350px;
+}
+
+.card-banner {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+    background-size: cover;
+    border-radius: 5px;
+}
+figure {
+    margin-bottom: 0;
+}
+figure {
+    margin: 0 0 1rem;
+}
+article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+user agent stylesheet
+figure {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+}
+
+
+.card-banner .overlay.left {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    position: absolute;
+}
+.card-banner .overlay {
+    background-color: rgba(0,0,0,0.65);
+    z-index: 10;
+    padding: 1.25rem;
+    color: #fff;
+}
+article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+user agent stylesheet
+figcaption {
+    display: block;
+}

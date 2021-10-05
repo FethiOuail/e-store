@@ -169,22 +169,21 @@
 
                             <div class="item-slide banner-wrap" >
 
-                                <div class="row   d-flex justify-content-center  " style="position: relative;">
 
 
-                                    <img class="" src="{{ asset('assets/images/sliders') }}/{{$slide->image}}" height="311px" alt="">
-
-
-                                    <article class="carousel-caption d-none d-md-block" style="top: 30%;bottom: 20%;">
-
-                                        <h5 class="text-dark">{{$slide->title}}</h5>
-                                        <span class="text-dark subtitle">{{$slide->subtitle}}</span>
-                                        <a href="{{$slide->link}}" class="btn btn-primary">Shop Now</a>
-                                    </article>
-
-
-
+                                <div class="row" >
+                                    <figure class="card-banner banner-size-lg">
+                                        <figcaption class="overlay left">
+                                            <br>
+                                            <h2 style="max-width: 300px;">{{$slide->title}}</h2>
+                                            <p> {{$slide->subtitle}}</p>
+                                            <br>
+                                            <a class="btn btn-warning" href="{{$slide->link}}">Detail info » </a>
+                                        </figcaption>
+                                        <img src="{{ asset('assets/images/sliders') }}/{{$slide->image}}" height="311px" alt="">
+                                    </figure>
                                 </div>
+
 
 
                             </div>
@@ -193,6 +192,7 @@
                     </div>
 
         </div>
+
 
 
     </div> <!-- row.// -->

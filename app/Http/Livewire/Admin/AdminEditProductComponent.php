@@ -129,8 +129,15 @@ class AdminEditProductComponent extends Component
                 {
                     if($image)
                     {
-                        unlink('assets/images/products'.'/'.$image);
+
+                        if(file_exists("assets/images/products'.'/'.$product->image")) {
+                            unlink('assets/images/products'.'/'.$product->image);
+                        }
+
                     }
+
+
+
                 }
             }
 

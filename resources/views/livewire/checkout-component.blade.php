@@ -93,7 +93,7 @@
                 <div class="row col-12">
                     <div class="col-12 col-sm-6 my-1">
                         <label class="" for="country">{{trans('message.Country')}} <span>*</span></label>
-                        <input type="text" class="form-control" name="country" value="" placeholder="Algeria" disabled wire:model="country">
+                        <input type="text" class="form-control" name="country" value="Algeria" placeholder="Algeria" disabled wire:model="country">
                         @error('country')  <span class="text-danger">{{$message}}</span> @enderror
                     </div>
 
